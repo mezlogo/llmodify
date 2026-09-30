@@ -6,7 +6,7 @@ import java.nio.file.Path
  * This class represents a configuration for searching and building a context of files.
  */
 data class ContextConfig(
-    
+
     /**
      * Path to traverse all files from this path. It's a root for all files and make it possible to build relative path for each file.
      */
