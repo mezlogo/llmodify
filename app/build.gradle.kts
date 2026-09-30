@@ -22,4 +22,5 @@ spotless {
 
 application {
   mainClass.set("mezlogo.llmodify.app.Main")
+  applicationDefaultJvmArgs = listOf("--enable-native-access=ALL-UNNAMED")
 }
