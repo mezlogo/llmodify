@@ -1,8 +1,8 @@
-package mezlogo.llmodify.adapter.xml.impl
+package mezlogo.llmodify.adapter.context.impl
 
-import mezlogo.llmodify.adapter.xml.BuildContextUseCase
-import mezlogo.llmodify.adapter.xml.model.ContextTO
-import mezlogo.llmodify.adapter.xml.model.FileTO
+import mezlogo.llmodify.adapter.context.BuildContextUseCase
+import mezlogo.llmodify.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.adapter.xmlmodel.FileTO
 import mezlogo.llmodify.port.model.GivenFilesParameters
 import mezlogo.llmodify.port.model.TraverseParameters
 import java.nio.file.FileSystems

@@ -1,6 +1,6 @@
-package mezlogo.llmodify.adapter.xml
+package mezlogo.llmodify.adapter.context
 
-import mezlogo.llmodify.adapter.xml.model.ContextTO
+import mezlogo.llmodify.adapter.xmlmodel.ContextTO
 import mezlogo.llmodify.port.model.GivenFilesParameters
 import mezlogo.llmodify.port.model.TraverseParameters
 

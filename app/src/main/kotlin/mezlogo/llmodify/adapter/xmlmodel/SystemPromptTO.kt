@@ -1,12 +1,12 @@
-package mezlogo.llmodify.adapter.xml.model
+package mezlogo.llmodify.adapter.xmlmodel
 
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlCData
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 
 @Serializable
-@XmlSerialName("instructions")
-data class InstructionsTO(
+@XmlSerialName("system")
+data class SystemPromptTO(
     @XmlCData
     val content: String,
 )

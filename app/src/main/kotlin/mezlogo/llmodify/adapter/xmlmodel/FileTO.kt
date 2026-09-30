@@ -1,4 +1,4 @@
-package mezlogo.llmodify.adapter.xml.model
+package mezlogo.llmodify.adapter.xmlmodel
 
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlCData
