@@ -1,0 +1,59 @@
+# ==========================================
+# Gradle & Kotlin Build Artifacts
+# ==========================================
+.gradle/
+build/
+**/build/
+.kotlin/
+
+# ==========================================
+# Android Studio / IntelliJ IDEA / Fleet
+# ==========================================
+.idea/
+*.iml
+*.ipr
+*.iws
+.fleet/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+
+# ==========================================
+# iOS & Xcode (Swift / CocoaPods / Compose MP)
+# ==========================================
+# Xcode internal user data and caches
+xcuserdata/
+DerivedData/
+.spy/
+
+# CocoaPods specific dependencies (if using the cocoapods plugin)
+iosApp/Pods/
+Pods/
+.cocoapods/
+
+# Swift Package Manager (if using SPM integration)
+.swiftpm/
+/Packages
+.build/
+
+# Ignore local Xcode project configuration but KEEP the structure
+# Note: Adjust 'iosApp' if your iOS module uses a different folder name
+iosApp/*.xcodeproj/*
+!iosApp/*.xcodeproj/project.pbxproj
+!iosApp/*.xcodeproj/xcshareddata/
+
+# ==========================================
+# Web / WASM (Compose Multiplatform / Kotlin/JS)
+# ==========================================
+node_modules/
+.meta/
+*.kjsm
+
+# ==========================================
+# OS & Miscellaneous Caches
+# ==========================================
+.DS_Store
+Thumbs.db
+*.log
