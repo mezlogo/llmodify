@@ -8,4 +8,4 @@ compile:
     ./gradlew :app:compileKotlin
 
 build:
-    ./gradlew :app:distInstall
+    ./gradlew :app:installDist

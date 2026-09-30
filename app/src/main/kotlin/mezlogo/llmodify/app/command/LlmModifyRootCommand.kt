@@ -2,6 +2,6 @@ package mezlogo.llmodify.app.command
 
 import com.github.ajalt.clikt.core.CliktCommand
 
-class ArchSyncRootCommand : CliktCommand(name = "archsync") {
+class LlmModifyRootCommand : CliktCommand(name = "llmodify") {
   override fun run() = Unit
 }
