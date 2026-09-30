@@ -13,7 +13,7 @@ data class ContextConfig(
     val contextRoot: Path,
 
     /**
-     * This is a filename only glob rulse. IF filename test at least one glob it's ok.
+     * This is a filename only glob rules. IF filename test at least one glob it's ok.
      * Simple file type globs: '*.kt', '*.y*ml', '*.java'
      * Simple file name types: '33-*' - all files starts with 33, useful for linux configuration files
      * When empty - include all files.
