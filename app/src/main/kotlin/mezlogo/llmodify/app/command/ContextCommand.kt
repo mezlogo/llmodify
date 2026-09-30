@@ -64,7 +64,7 @@ class ContextCommand(
             buildContextUseCase.buildContext(parameters)
         }
 
-        val xml = XML.v1 { setIndent(2) }.encodeToString(context)
+        val xml = XML.v1 { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
 
         val out = output
         if (out == null) {
