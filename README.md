@@ -16,6 +16,6 @@ Create a context aware prompt with structured output for multi file code modific
 
 | command | args | description |
 | --- | --- | --- |
-| context | -o, --output, -r, --repo | outputs xml with <context> tag |
+| context | -o, --output, -r, --repo, -g, --glob, -e, --exlude, --stdin | traverse and builds context, outputs xml with <context> tag |
 | prompt | -o, --output, -r, --repo, -i, --instruction | build whole <prompt> with system, user, context, instruction, output format |
 | modify | -i, --input, -r, --repo | takes xml from llm and do all file IO operations |
