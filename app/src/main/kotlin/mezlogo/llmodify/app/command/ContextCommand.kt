@@ -8,6 +8,7 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.path
 import mezlogo.llmodify.adapter.xml.BuildContextUseCase
 import mezlogo.llmodify.adapter.xml.model.ContextTO
+import mezlogo.llmodify.port.model.GivenFilesParameters
 import mezlogo.llmodify.port.model.TraverseParameters
 import nl.adaptivity.xmlutil.serialization.XML
 import java.nio.file.Path
@@ -45,24 +46,40 @@ class ContextCommand(
 
     override fun run() {
         val context: ContextTO = if (stdin) {
-            TODO("IMPLEMENT BASED ON STDIN")
+            val givenFiles = generateSequence { readlnOrNull() }
+                .mapNotNull { it.trim() }
+                .filter { it.isNotEmpty() }
+                .map { Path.of(it) }
+                .toList()
+
+            val parameters = GivenFilesParameters(
+                contextRoot = repo,
+                givenFiles = givenFiles,
+            )
+            buildContextUseCase.buildContext(
+                parameters
+            )
         } else {
             val parameters = buildTraverseParameters()
             buildContextUseCase.buildContext(parameters)
         }
 
-      val xml = XML { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
+        val xml = XML { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
 
-      val out = output
-      if (out == null) {
-        echo(xml)
-      } else {
-        out.parent?.createDirectories()
-        out.writeText(xml)
-      }
+        val out = output
+        if (out == null) {
+            echo(xml)
+        } else {
+            out.parent?.createDirectories()
+            out.writeText(xml)
+        }
     }
 
     private fun buildTraverseParameters(): TraverseParameters {
-      TODO("IMPLEMENT")
+        return TraverseParameters(
+            contextRoot = repo,
+            includeGlobs = includeGlobs,
+            excludeGlobs = excludeGlobs,
+        )
     }
 }
