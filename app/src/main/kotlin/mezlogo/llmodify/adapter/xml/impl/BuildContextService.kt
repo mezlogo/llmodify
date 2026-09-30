@@ -2,13 +2,20 @@ package mezlogo.llmodify.adapter.xml.impl
 
 import mezlogo.llmodify.adapter.xml.BuildContextUseCase
 import mezlogo.llmodify.adapter.xml.model.ContextTO
-import mezlogo.llmodify.port.model.ContextConfig
+import mezlogo.llmodify.port.model.GivenFilesParameters
+import mezlogo.llmodify.port.model.TraverseParameters
 
 /**
  * Use kotlin-jvm file io for traverse files, filter by globs, exclude by globs,
  */
 class BuildContextService: BuildContextUseCase {
-    override fun buildContext(contextConfig: ContextConfig): ContextTO {
+    override fun buildContext(traverseParameters: TraverseParameters): ContextTO {
+        TODO("Not yet implemented")
+    }
+
+    override fun buildContext(
+        givenFilesParameters: GivenFilesParameters,
+    ): ContextTO {
         TODO("Not yet implemented")
     }
 
