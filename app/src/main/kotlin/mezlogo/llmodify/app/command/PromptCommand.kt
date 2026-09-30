@@ -8,8 +8,8 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.path
 import mezlogo.llmodify.adapter.context.BuildContextUseCase
 import mezlogo.llmodify.adapter.prompt.BuildPromptUseCase
-import mezlogo.llmodify.adapter.prompt.impl.BuildPromptService
 import mezlogo.llmodify.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.adapter.xmlmodel.PromptTO
 import mezlogo.llmodify.port.model.GivenFilesParameters
 import mezlogo.llmodify.port.model.PromptOverrideParameters
 import mezlogo.llmodify.port.model.TraverseParameters
@@ -25,7 +25,7 @@ class PromptCommand(
 
     private val output: Path? by option(
         "-o", "--output",
-        help = "Write XML context to file instead of stdout"
+        help = "Write XML prompt to file instead of stdout"
     ).path()
 
     private val repo: Path by option(
@@ -55,11 +55,30 @@ class PromptCommand(
 
     private val instructions: String? by option(
         "-i", "--instructions",
-        help = "Override system prompt"
+        help = "Override user instructions"
     )
 
     override fun run() {
-        val context: ContextTO = if (stdin) {
+        val context: ContextTO = buildContext()
+
+        val prompt: PromptTO = buildPromptUseCase.buildPrompt(
+            buildPromptOverrideParameters(),
+            context,
+        )
+
+        val xml = XML.v1 { setIndent(2) }.encodeToString(PromptTO.serializer(), prompt)
+
+        val out = output
+        if (out == null) {
+            echo(xml)
+        } else {
+            out.parent?.createDirectories()
+            out.writeText(xml)
+        }
+    }
+
+    private fun buildContext(): ContextTO {
+        return if (stdin) {
             val givenFiles = generateSequence { readlnOrNull() }
                 .mapNotNull { it.trim() }
                 .filter { it.isNotEmpty() }
@@ -70,24 +89,9 @@ class PromptCommand(
                 contextRoot = repo,
                 givenFiles = givenFiles,
             )
-            buildContextUseCase.buildContext(
-                parameters
-            )
-        } else {
-            val parameters = buildTraverseParameters()
             buildContextUseCase.buildContext(parameters)
-        }
-
-        TODO("WRITE CODE FOR buildPrompt")
-
-        val xml = XML.v1 { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
-
-        val out = output
-        if (out == null) {
-            echo(xml)
         } else {
-            out.parent?.createDirectories()
-            out.writeText(xml)
+            buildContextUseCase.buildContext(buildTraverseParameters())
         }
     }
 
@@ -100,6 +104,9 @@ class PromptCommand(
     }
 
     private fun buildPromptOverrideParameters(): PromptOverrideParameters {
-        TODO("IMPLTMENT")
+        return PromptOverrideParameters(
+            instructions = instructions,
+            systemPrompt = systemPrompt,
+        )
     }
 }
