@@ -51,7 +51,7 @@ class ContextCommand(
             buildContextUseCase.buildContext(parameters)
         }
 
-      val xml = XML { indent = 2 }.encodeToString(ContextTO.serializer(), context)
+      val xml = XML { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
 
       val out = output
       if (out == null) {
