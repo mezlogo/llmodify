@@ -1,4 +1,4 @@
-package mezlogo.llmodify.adapter.xmlmodel
+package mezlogo.llmodify.prompt.adapter.xmlmodel
 
 import nl.adaptivity.xmlutil.serialization.*
 import kotlinx.serialization.Serializable

@@ -1,8 +1,8 @@
-package mezlogo.llmodify.adapter.context
+package mezlogo.llmodify.prompt.adapter.context
 
-import mezlogo.llmodify.adapter.xmlmodel.ContextTO
-import mezlogo.llmodify.port.model.GivenFilesParameters
-import mezlogo.llmodify.port.model.TraverseParameters
+import mezlogo.llmodify.prompt.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.prompt.model.GivenFilesParameters
+import mezlogo.llmodify.prompt.model.TraverseParameters
 
 interface BuildContextUseCase {
     /**

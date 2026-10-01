@@ -1,4 +1,4 @@
-package mezlogo.llmodify.port.model
+package mezlogo.llmodify.prompt.model
 
 data class PromptOverrideParameters(
     val instructions: String? = null,

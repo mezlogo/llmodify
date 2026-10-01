@@ -1,12 +1,12 @@
-package mezlogo.llmodify.adapter.prompt.impl
+package mezlogo.llmodify.prompt.adapter.prompt.impl
 
-import mezlogo.llmodify.adapter.prompt.BuildPromptUseCase
-import mezlogo.llmodify.adapter.xmlmodel.ContextTO
-import mezlogo.llmodify.adapter.xmlmodel.InstructionsTO
-import mezlogo.llmodify.adapter.xmlmodel.PromptTO
-import mezlogo.llmodify.adapter.xmlmodel.SystemPromptTO
-import mezlogo.llmodify.adapter.xmlmodel.UserPromptTO
-import mezlogo.llmodify.port.model.PromptOverrideParameters
+import mezlogo.llmodify.prompt.adapter.prompt.BuildPromptUseCase
+import mezlogo.llmodify.prompt.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.prompt.adapter.xmlmodel.InstructionsTO
+import mezlogo.llmodify.prompt.adapter.xmlmodel.PromptTO
+import mezlogo.llmodify.prompt.adapter.xmlmodel.SystemPromptTO
+import mezlogo.llmodify.prompt.adapter.xmlmodel.UserPromptTO
+import mezlogo.llmodify.prompt.model.PromptOverrideParameters
 
 /**
  * Builds a prompt from default classpath resources,

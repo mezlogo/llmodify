@@ -6,10 +6,10 @@ import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.multiple
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.path
-import mezlogo.llmodify.adapter.context.BuildContextUseCase
-import mezlogo.llmodify.adapter.xmlmodel.ContextTO
-import mezlogo.llmodify.port.model.GivenFilesParameters
-import mezlogo.llmodify.port.model.TraverseParameters
+import mezlogo.llmodify.prompt.adapter.context.BuildContextUseCase
+import mezlogo.llmodify.prompt.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.prompt.model.GivenFilesParameters
+import mezlogo.llmodify.prompt.model.TraverseParameters
 import nl.adaptivity.xmlutil.serialization.XML
 import java.nio.file.Path
 import kotlin.io.path.createDirectories

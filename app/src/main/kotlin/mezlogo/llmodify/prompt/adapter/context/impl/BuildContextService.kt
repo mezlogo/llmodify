@@ -1,10 +1,10 @@
-package mezlogo.llmodify.adapter.context.impl
+package mezlogo.llmodify.prompt.adapter.context.impl
 
-import mezlogo.llmodify.adapter.context.BuildContextUseCase
-import mezlogo.llmodify.adapter.xmlmodel.ContextTO
-import mezlogo.llmodify.adapter.xmlmodel.FileTO
-import mezlogo.llmodify.port.model.GivenFilesParameters
-import mezlogo.llmodify.port.model.TraverseParameters
+import mezlogo.llmodify.prompt.adapter.context.BuildContextUseCase
+import mezlogo.llmodify.prompt.adapter.xmlmodel.ContextTO
+import mezlogo.llmodify.prompt.adapter.xmlmodel.FileTO
+import mezlogo.llmodify.prompt.model.GivenFilesParameters
+import mezlogo.llmodify.prompt.model.TraverseParameters
 import java.nio.file.FileSystems
 import java.nio.file.Files
 import java.nio.file.Path

@@ -1,4 +1,4 @@
-package mezlogo.llmodify.port.model
+package mezlogo.llmodify.prompt.model
 
 import java.nio.file.Path
 
