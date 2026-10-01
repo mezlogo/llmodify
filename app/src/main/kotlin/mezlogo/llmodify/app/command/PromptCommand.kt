@@ -99,9 +99,14 @@ class PromptCommand(
 
   private fun buildContext(): ContextTO {
     return if (stdin) {
-      val givenFiles = generateSequence {
-        readlnOrNull()
-      }.mapNotNull { it.trim() }.filter { it.isNotEmpty() }.map { Path.of(it) }.toList()
+      val givenFiles =
+          generateSequence {
+                readlnOrNull()
+              }
+              .mapNotNull { it.trim() }
+              .filter { it.isNotEmpty() }
+              .map { Path.of(it) }
+              .toList()
 
       val parameters =
           GivenFilesParameters(

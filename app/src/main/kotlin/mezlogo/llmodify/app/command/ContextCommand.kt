@@ -63,9 +63,14 @@ class ContextCommand(
   override fun run() {
     val context: ContextTO =
         if (stdin) {
-          val givenFiles = generateSequence {
-            readlnOrNull()
-          }.mapNotNull { it.trim() }.filter { it.isNotEmpty() }.map { Path.of(it) }.toList()
+          val givenFiles =
+              generateSequence {
+                    readlnOrNull()
+                  }
+                  .mapNotNull { it.trim() }
+                  .filter { it.isNotEmpty() }
+                  .map { Path.of(it) }
+                  .toList()
 
           val parameters =
               GivenFilesParameters(

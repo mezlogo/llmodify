@@ -19,15 +19,15 @@ object Main {
   fun main(args: Array<String>) {
     val buildContextUseCase: BuildContextUseCase = BuildContextService()
     val buildPromptUseCase: BuildPromptUseCase = BuildPromptService()
-      val patchUseCase: PatchUseCase = PatchService()
+    val patchUseCase: PatchUseCase = PatchService()
 
-      LlmModifyRootCommand()
-          .subcommands(
-              ContextCommand(buildContextUseCase),
-              PromptCommand(buildContextUseCase, buildPromptUseCase),
-              PatchCommand(patchUseCase),
-          )
-          .completionOption()
-          .main(args)
+    LlmModifyRootCommand()
+        .subcommands(
+            ContextCommand(buildContextUseCase),
+            PromptCommand(buildContextUseCase, buildPromptUseCase),
+            PatchCommand(patchUseCase),
+        )
+        .completionOption()
+        .main(args)
   }
 }

@@ -1,7 +1,7 @@
 package mezlogo.llmodify.modify.model
 
-import nl.adaptivity.xmlutil.serialization.XmlElement
 import java.nio.file.Path
+import nl.adaptivity.xmlutil.serialization.XmlElement
 
 data class PatchContext(
     /** Root for all relative path in modifications. */

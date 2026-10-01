@@ -35,9 +35,9 @@ class PatchService : PatchUseCase {
   }
 
   /**
-   * Modify is a special action - we need to group all modification by file name first.
-   * Make up to multiple modification for single file by sorting in descending order by lineStart.
-   * This simple trick saves lineStart between same file modification.
+   * Modify is a special action - we need to group all modification by file name first. Make up to
+   * multiple modification for single file by sorting in descending order by lineStart. This simple
+   * trick saves lineStart between same file modification.
    */
   private fun modify(root: Path, filePath: String, modifies: List<ModifyTO>) {
     val target = resolve(root, filePath)

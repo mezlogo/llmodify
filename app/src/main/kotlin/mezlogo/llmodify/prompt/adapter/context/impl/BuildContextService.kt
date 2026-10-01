@@ -84,7 +84,7 @@ class BuildContextService : BuildContextUseCase {
   }
 
   private fun languageOf(fileName: String): String {
-      return when (val extension = fileName.substringAfterLast('.', "").lowercase()) {
+    return when (val extension = fileName.substringAfterLast('.', "").lowercase()) {
       "kt",
       "kts" -> "kotlin"
       "java" -> "java"
