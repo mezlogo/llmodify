@@ -8,14 +8,9 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @Serializable
 @XmlSerialName("file")
 data class FileTO(
-    @XmlCData
-    val content: String,
-    @XmlElement(false)
-    val path: String,
-    @XmlElement(false)
-    val language: String,
-    @XmlElement(false)
-    val module: String,
-    @XmlElement(false)
-    val scope: String,
+    @XmlCData val content: String,
+    @XmlElement(false) val path: String,
+    @XmlElement(false) val language: String,
+    @XmlElement(false) val module: String,
+    @XmlElement(false) val scope: String,
 )

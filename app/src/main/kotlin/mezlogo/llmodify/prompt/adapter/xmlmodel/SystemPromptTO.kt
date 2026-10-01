@@ -7,6 +7,5 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @Serializable
 @XmlSerialName("system")
 data class SystemPromptTO(
-    @XmlCData
-    val content: String,
+    @XmlCData val content: String,
 )

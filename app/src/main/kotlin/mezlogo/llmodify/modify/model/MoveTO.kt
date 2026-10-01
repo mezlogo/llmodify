@@ -7,9 +7,6 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @Serializable
 @XmlSerialName("move")
 data class MoveTO(
-    @XmlElement(false)
-    val from: String,
-
-    @XmlElement(false)
-    val to: String,
+    @XmlElement(false) val from: String,
+    @XmlElement(false) val to: String,
 )

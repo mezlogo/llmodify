@@ -7,7 +7,6 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @Serializable
 @XmlSerialName("Context")
 data class ContextTO(
-    @XmlElement(false)
-    val repo: String,
+    @XmlElement(false) val repo: String,
     val files: List<FileTO>,
 )
