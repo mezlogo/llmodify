@@ -14,8 +14,8 @@ class PatchService : PatchUseCase {
   ) {
     val root = patchContext.contextRoot.toAbsolutePath().normalize()
 
+    TODO("Group modification by same file path and call group modification")
     patchTo.write.forEach { write(root, it) }
-    patchTo.modify.forEach { modify(root, it) }
     patchTo.move.forEach { move(root, it) }
     patchTo.delete.forEach { delete(root, it) }
   }
@@ -31,22 +31,14 @@ class PatchService : PatchUseCase {
     target.writeText(writeTO.content, Charsets.UTF_8)
   }
 
-  private fun modify(root: Path, modifyTO: ModifyTO) {
-    val target = resolve(root, modifyTO.path)
-    val content = target.readText(Charsets.UTF_8)
-    val lines = fileLines(content)
-    val lineStart = modifyTO.lineStart.toInt()
-    val replaceLines = modifyTO.replaceLines.toInt()
-    require(lineStart >= 1) { "line_start must be >= 1: ${modifyTO.lineStart}" }
-    require(replaceLines >= 0) { "replace_lines must be >= 0: ${modifyTO.replaceLines}" }
-
-    val insertionIndex = (lineStart - 1).coerceIn(0, lines.size)
-    val removeEnd = (insertionIndex + replaceLines).coerceAtMost(lines.size)
-    if (removeEnd > insertionIndex) {
-      lines.subList(insertionIndex, removeEnd).clear()
-    }
-    lines.addAll(insertionIndex, insertedLines(modifyTO.content))
-    target.writeText(lines.joinToString("\n"), Charsets.UTF_8)
+  /**
+   * Modify is a special action - we need to group all modification by file name first.
+   * Make up to multiple modification for single file by sorting in descending order by lineStart.
+   * This simple trick saves lineStart between same file modification.
+   * Or if you want modify content from end to start.
+   */
+  private fun modify(root: Path, filePath: String, modifies: List<ModifyTO>) {
+    TODO("IMPLEMENT")
   }
 
   private fun move(root: Path, moveTO: MoveTO) {
