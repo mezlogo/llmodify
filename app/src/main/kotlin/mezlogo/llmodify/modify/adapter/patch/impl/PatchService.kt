@@ -50,7 +50,8 @@ class PatchService : PatchUseCase {
         .forEach { modifyTO ->
           val lineStart = modifyTO.lineStart.toInt()
           val replaceLines = modifyTO.replaceLines.toInt()
-          val insertLines = insertedLines(modifyTO.content)
+          val content = modifyTO.content.removePrefix("\n")
+          val insertLines = insertedLines(content)
 
           val startIndex = (lineStart - 1).coerceIn(0, lines.size)
           val endIndex = (startIndex + replaceLines).coerceIn(startIndex, lines.size)
