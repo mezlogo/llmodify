@@ -12,4 +12,5 @@ data class ModifyTO(
     @XmlElement(false) val path: String,
     @XmlElement(false) @XmlSerialName("line_start") val lineStart: String,
     @XmlElement(false) @XmlSerialName("replace_lines") val replaceLines: String,
+    @XmlElement(false) val description: String? = null,
 )

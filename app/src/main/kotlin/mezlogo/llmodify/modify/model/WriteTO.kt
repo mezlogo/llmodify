@@ -10,4 +10,5 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 data class WriteTO(
     @XmlCData val content: String,
     @XmlElement(false) val path: String,
+    @XmlElement(false) val description: String? = null,
 )

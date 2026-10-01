@@ -11,4 +11,5 @@ data class PatchTO(
     @XmlElement(true) val write: List<WriteTO> = emptyList(),
     @XmlElement(true) val move: List<MoveTO> = emptyList(),
     @XmlElement(true) val delete: List<DeleteTO> = emptyList(),
+    @XmlElement(false) val description: String? = null,
 )

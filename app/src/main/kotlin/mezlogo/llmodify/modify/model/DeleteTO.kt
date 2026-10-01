@@ -8,4 +8,5 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 @XmlSerialName("delete")
 data class DeleteTO(
     @XmlElement(false) val path: String,
+    @XmlElement(false) val description: String? = null,
 )
