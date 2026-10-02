@@ -20,4 +20,6 @@ data class TraverseParameters(
 
     /** Filter included filenames by glob. When empty - do not exclude anything. */
     val excludeGlobs: List<String>,
+    /** Only include files under these paths. When empty - include all. */
+    val includePaths: List<Path> = emptyList(),
 )

@@ -48,8 +48,15 @@ class ContextCommand(
       option(
               "-e",
               "--exclude",
-              help = "Exclude filename glob; repeatable",
+              help = "Exclude filename or path glob; repeatable",
           )
+          .multiple()
+  private val includePaths: List<Path> by
+      option(
+              "--includePath",
+              help = "Include files under this path; repeatable",
+          )
+          .path()
           .multiple()
 
   private val stdin: Boolean by
@@ -99,6 +106,7 @@ class ContextCommand(
         contextRoot = repo,
         includeGlobs = includeGlobs,
         excludeGlobs = excludeGlobs,
+        includePaths = includePaths,
     )
   }
 }

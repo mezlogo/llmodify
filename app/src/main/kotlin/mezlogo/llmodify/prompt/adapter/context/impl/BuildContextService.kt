@@ -17,17 +17,32 @@ class BuildContextService : BuildContextUseCase {
     val contextRoot = traverseParameters.contextRoot
     val includeGlobs = traverseParameters.includeGlobs
     val excludeGlobs = traverseParameters.excludeGlobs
+    val includePaths = traverseParameters.includePaths
 
     val files =
         Files.walk(contextRoot).use { stream ->
           stream
               .filter { Files.isRegularFile(it) }
               .filter { file ->
+                val relativePath = contextRoot.relativize(file).toString().replace('\\', '/')
                 val fileName = file.fileName.toString()
+                val absoluteFile = file.toAbsolutePath().normalize()
+                val root = contextRoot.toAbsolutePath().normalize()
+                val includedByPath =
+                    includePaths.isEmpty() ||
+                        includePaths.any { includePath ->
+                          val resolved =
+                              if (includePath.isAbsolute) includePath.normalize()
+                              else root.resolve(includePath).normalize()
+                          absoluteFile.startsWith(resolved)
+                        }
                 val included = includeGlobs.isEmpty() || includeGlobs.any { testGlob(fileName, it) }
                 val excluded =
-                    excludeGlobs.isNotEmpty() && excludeGlobs.any { testGlob(fileName, it) }
-                included && !excluded
+                    excludeGlobs.isNotEmpty() &&
+                        excludeGlobs.any {
+                          testGlob(fileName, it) || testGlob(relativePath, it)
+                        }
+                includedByPath && included && !excluded
               }
               .sorted()
               .map { file -> buildFile(contextRoot, file) }
