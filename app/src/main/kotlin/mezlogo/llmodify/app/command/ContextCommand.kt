@@ -66,6 +66,12 @@ class ContextCommand(
                   "When true accept file pathes from stdin. In this mode all other filters are turn off.",
           )
           .flag()
+  private val dry: Boolean by
+      option(
+              "--dry",
+              help = "Print only file paths to stdout without writing XML",
+          )
+          .flag()
 
   override fun run() {
     val context: ContextTO =
@@ -89,6 +95,11 @@ class ContextCommand(
           val parameters = buildTraverseParameters()
           buildContextUseCase.buildContext(parameters)
         }
+
+    if (dry) {
+      context.files.forEach { echo(it.path) }
+      return
+    }
 
     val xml = XML.v1 { setIndent(2) }.encodeToString(ContextTO.serializer(), context)
 

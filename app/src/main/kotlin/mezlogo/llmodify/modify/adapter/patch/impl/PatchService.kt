@@ -53,7 +53,10 @@ class PatchService : PatchUseCase {
           val content = modifyTO.content.removePrefix("\n")
           val insertLines = insertedLines(content)
 
-          val startIndex = (lineStart - 1).coerceIn(0, lines.size)
+          val startIndex =
+              if (replaceLines == 0) lineStart.coerceIn(0, lines.size)
+              else (lineStart - 1).coerceIn(0, lines.size)
+
           val endIndex = (startIndex + replaceLines).coerceIn(startIndex, lines.size)
 
           repeat(endIndex - startIndex) {
