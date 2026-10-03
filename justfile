@@ -1,3 +1,6 @@
+clean:
+    ./gradlew clean
+
 test:
     ./gradlew :app:test --rerun
 

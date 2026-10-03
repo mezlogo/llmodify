@@ -63,6 +63,13 @@ class PromptCommand(
           .path()
           .multiple()
 
+  private val noIgnore: Boolean by
+      option(
+              "--no-ignore",
+              help = "Do not ignore files and paths from .gitignore",
+          )
+          .flag()
+
   private val stdin: Boolean by
       option(
               "--stdin",
@@ -132,6 +139,7 @@ class PromptCommand(
         includeGlobs = includeGlobs,
         excludeGlobs = excludeGlobs,
         includePaths = includePaths,
+        respectGitignore = !noIgnore,
     )
   }
 

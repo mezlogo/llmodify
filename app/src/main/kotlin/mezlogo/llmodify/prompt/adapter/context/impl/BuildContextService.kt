@@ -18,6 +18,8 @@ class BuildContextService : BuildContextUseCase {
     val includeGlobs = traverseParameters.includeGlobs
     val excludeGlobs = traverseParameters.excludeGlobs
     val includePaths = traverseParameters.includePaths
+    val gitignorePatterns =
+        if (traverseParameters.respectGitignore) readGitignore(contextRoot) else emptyList()
 
     val files =
         Files.walk(contextRoot).use { stream ->
@@ -42,7 +44,10 @@ class BuildContextService : BuildContextUseCase {
                         excludeGlobs.any {
                           testGlob(fileName, it) || testGlob(relativePath, it)
                         }
-                includedByPath && included && !excluded
+                val ignoredByGitignore =
+                    gitignorePatterns.isNotEmpty() &&
+                        isIgnoredByGitignore(relativePath, fileName, gitignorePatterns)
+                includedByPath && included && !excluded && !ignoredByGitignore
               }
               .sorted()
               .map { file -> buildFile(contextRoot, file) }
@@ -114,5 +119,38 @@ class BuildContextService : BuildContextUseCase {
       "gradle" -> "gradle"
       else -> if (extension.isEmpty()) "text" else extension
     }
+  }
+
+  private fun readGitignore(root: Path): List<String> {
+    val gitignore = root.resolve(".gitignore")
+    if (!Files.isRegularFile(gitignore)) return emptyList()
+    return Files.readAllLines(gitignore, Charsets.UTF_8)
+        .map { it.trim() }
+        .filter { it.isNotEmpty() && !it.startsWith("#") }
+  }
+
+  private fun isIgnoredByGitignore(
+      relativePath: String,
+      fileName: String,
+      patterns: List<String>,
+  ): Boolean {
+    var ignored = false
+    for (raw in patterns) {
+      var pattern = raw
+      val negate = pattern.startsWith("!")
+      if (negate) pattern = pattern.removePrefix("!")
+      if (pattern.startsWith("/")) pattern = pattern.removePrefix("/")
+      val matches =
+          if (pattern.endsWith("/")) {
+            val dir = pattern.removeSuffix("/")
+            relativePath == dir || relativePath.startsWith("$dir/")
+          } else {
+            testGlob(fileName, pattern) || testGlob(relativePath, pattern)
+          }
+      if (matches) {
+        ignored = !negate
+      }
+    }
+    return ignored
   }
 }

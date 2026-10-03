@@ -22,4 +22,6 @@ data class TraverseParameters(
     val excludeGlobs: List<String>,
     /** Only include files under these paths. When empty - include all. */
     val includePaths: List<Path> = emptyList(),
+    /** When true, ignore files and directories listed in .gitignore. */
+    val respectGitignore: Boolean = true,
 )
